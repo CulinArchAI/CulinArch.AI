@@ -2,32 +2,541 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CulinArchAI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07090a" />
+  <meta
+    name="description"
+    content="CulinArch.AI — an evolving architecture for culinary knowledge, operations and intelligent decision-making."
+  />
+  <title>CulinArch.AI — Culinary Intelligence Architecture</title>
   <style>
+    :root {
+      color-scheme: dark;
+      --background: #07090a;
+      --line: rgba(205, 220, 217, 0.12);
+      --text: #edf1ef;
+      --muted: #929d9a;
+      --accent: #b9d2ce;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { min-height: 100%; margin: 0; }
+
     body {
-      background: #0d0d0d;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      background: var(--background);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+
+    button, a { font: inherit; }
+    button:focus-visible, a:focus-visible { outline: 1px solid var(--accent); outline-offset: 5px; }
+    ::selection { background: rgba(185, 210, 206, 0.22); color: #fff; }
+
+    .site-shell {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 18% 30%, rgba(56, 71, 73, 0.1), transparent 38%),
+        linear-gradient(145deg, #090c0d 0%, #060809 55%, #080b0c 100%);
+    }
+
+    .network-canvas, .ambient-grid {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .network-canvas { z-index: -1; }
+
+    .ambient-grid {
+      z-index: -2;
+      opacity: 0.36;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: linear-gradient(to right, black, transparent 82%);
+      mask-image: linear-gradient(to right, black, transparent 82%);
+    }
+
+    .site-header, .site-footer {
+      position: absolute;
+      left: clamp(24px, 5vw, 80px);
+      right: clamp(24px, 5vw, 80px);
       display: flex;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .site-header { top: clamp(24px, 4vw, 52px); }
+
+    .site-footer {
+      bottom: clamp(22px, 3vw, 38px);
+      color: rgba(209, 218, 215, 0.44);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .brand {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 17px;
+      letter-spacing: -0.035em;
+    }
+
+    .brand span { font-weight: 470; }
+    .brand strong { font-weight: 650; color: var(--accent); }
+
+    .header-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(210, 220, 217, 0.5);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(185, 210, 206, 0.55);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 0.46fr);
+      align-items: center;
+      gap: clamp(42px, 7vw, 120px);
+      padding: 120px clamp(24px, 5vw, 80px) 100px;
+    }
+
+    .hero-copy { max-width: 760px; }
+
+    .eyebrow, .panel-index {
+      margin: 0;
+      color: rgba(185, 210, 206, 0.64);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 25px 0 24px;
+      max-width: 740px;
+      font-size: clamp(48px, 7vw, 112px);
+      font-weight: 440;
+      line-height: 0.91;
+      letter-spacing: -0.064em;
+    }
+
+    .hero h1 span { color: rgba(237, 241, 239, 0.38); }
+
+    .intro {
+      max-width: 590px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.35vw, 19px);
+      line-height: 1.65;
+      letter-spacing: -0.012em;
+    }
+
+    .system-panel {
+      width: min(100%, 560px);
+      min-height: 130px;
+      margin-top: clamp(40px, 6vh, 72px);
+      padding: 22px 24px 23px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(17, 22, 23, 0.52), rgba(10, 13, 14, 0.18));
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+    }
+
+    .system-panel h2 {
+      margin: 13px 0 8px;
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .system-panel > p:last-child {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .system-nav {
+      align-self: end;
+      display: flex;
       flex-direction: column;
-      text-align: center;
+      margin-bottom: 48px;
+      border-top: 1px solid var(--line);
     }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.3em;
+
+    .system-link {
+      position: relative;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      align-items: center;
+      width: 100%;
+      padding: 17px 4px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: rgba(221, 228, 225, 0.46);
+      text-align: left;
+      cursor: pointer;
+      transition: color 220ms ease, padding-left 220ms ease;
     }
-    p {
-      font-size: 1.2em;
-      opacity: 0.7;
+
+    .system-link::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 260ms ease;
+    }
+
+    .system-link span {
+      color: rgba(185, 210, 206, 0.36);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+    }
+
+    .system-link:hover, .system-link.is-active { padding-left: 8px; color: var(--text); }
+    .system-link.is-active::after { width: 46%; }
+
+    @media (max-width: 900px) {
+      .header-status { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        align-content: center;
+        gap: 36px;
+        padding-top: 112px;
+        padding-bottom: 104px;
+      }
+      .hero-copy { max-width: 650px; }
+      .hero h1 { max-width: 620px; font-size: clamp(48px, 12vw, 78px); }
+      .intro { max-width: 500px; }
+      .system-panel { max-width: 500px; margin-top: 34px; }
+      .system-nav { width: min(100%, 500px); margin: 0; }
+    }
+
+    @media (max-width: 560px) {
+      .site-footer span:last-child { display: none; }
+      .hero h1 { font-size: clamp(44px, 13.5vw, 62px); line-height: 0.95; }
+      .intro { font-size: 14px; line-height: 1.6; }
+      .system-panel { min-height: 142px; padding: 19px 18px; }
+      .system-link { padding-top: 14px; padding-bottom: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>CulinArch.AI</h1>
-  <p>Something extraordinary is simmering… Launching soon.</p>
+  <main class="site-shell" id="top">
+    <canvas class="network-canvas" aria-hidden="true"></canvas>
+    <div class="ambient-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="CulinArch.AI home"><span>CulinArch</span><strong>.AI</strong></a>
+      <div class="header-status"><span class="status-dot"></span>Culinary intelligence architecture</div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Structured culinary intelligence</p>
+        <h1>A system.<br />A structure.<br /><span>A new language of taste.</span></h1>
+        <p class="intro">CulinArch.AI is an evolving architecture for culinary knowledge, operations and intelligent decision-making.</p>
+
+        <div class="system-panel" aria-live="polite">
+          <p class="panel-index">01 / 04</p>
+          <h2>Operational architecture</h2>
+          <p>A structured operating layer for culinary systems, standards and execution.</p>
+        </div>
+      </div>
+
+      <nav class="system-nav" aria-label="CulinArch.AI systems">
+        <button class="system-link is-active" type="button" aria-pressed="true" data-system="0"><span>01</span>ArcOS</button>
+        <button class="system-link" type="button" aria-pressed="false" data-system="1"><span>02</span>Culinary Intelligence</button>
+        <button class="system-link" type="button" aria-pressed="false" data-system="2"><span>03</span>Culinary Archaeology</button>
+        <button class="system-link" type="button" aria-pressed="false" data-system="3"><span>04</span>ArchSense</button>
+      </nav>
+    </section>
+
+    <footer class="site-footer"><span>Not a recipe platform.</span><span>Architecture in progress.</span></footer>
+  </main>
+
+  <script>
+    (() => {
+      const systems = [
+        { title: "Operational architecture", copy: "A structured operating layer for culinary systems, standards and execution." },
+        { title: "Data into decisions", copy: "Culinary information translated into usable patterns, logic and action." },
+        { title: "Origins and evolution", copy: "A research layer for tracing ingredients, techniques and culinary lineage." },
+        { title: "Perception and context", copy: "A sensory intelligence layer connecting preference, environment and intent." },
+      ];
+
+      const canvas = document.querySelector(".network-canvas");
+      const ctx = canvas.getContext("2d");
+      const buttons = Array.from(document.querySelectorAll(".system-link"));
+      const panelIndex = document.querySelector(".panel-index");
+      const panelTitle = document.querySelector(".system-panel h2");
+      const panelCopy = document.querySelector(".system-panel > p:last-child");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      let dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+      let nodes = [];
+      let frameId = 0;
+      let activeSystem = 0;
+      let signalStrength = 1;
+      const start = performance.now();
+      const pointer = { x: width * 0.72, y: height * 0.48, targetX: width * 0.72, targetY: height * 0.48, active: false };
+
+      const activateSystem = (index) => {
+        activeSystem = index;
+        signalStrength = 1;
+        buttons.forEach((button, buttonIndex) => {
+          const isActive = buttonIndex === index;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+        panelIndex.textContent = `0${index + 1} / 04`;
+        panelTitle.textContent = systems[index].title;
+        panelCopy.textContent = systems[index].copy;
+      };
+
+      buttons.forEach((button) => {
+        const index = Number(button.dataset.system);
+        button.addEventListener("mouseenter", () => activateSystem(index));
+        button.addEventListener("focus", () => activateSystem(index));
+        button.addEventListener("click", () => activateSystem(index));
+      });
+
+      const resize = () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = width < 760 ? 34 : Math.min(82, Math.floor((width * height) / 22000));
+        nodes = Array.from({ length: count }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.16,
+          vy: (Math.random() - 0.5) * 0.16,
+          size: 0.7 + Math.random() * 1.2,
+          alpha: 0.18 + Math.random() * 0.42,
+        }));
+      };
+
+      const onPointerMove = (event) => {
+        pointer.targetX = event.clientX;
+        pointer.targetY = event.clientY;
+        pointer.active = true;
+      };
+
+      const onPointerLeave = () => {
+        pointer.active = false;
+        pointer.targetX = width * 0.72;
+        pointer.targetY = height * 0.48;
+      };
+
+      const drawCurve = (fromX, fromY, toX, toY, alpha, widthValue = 0.8) => {
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.quadraticCurveTo(
+          (fromX + toX) / 2,
+          Math.min(fromY, toY) - Math.min(70, Math.abs(fromX - toX) * 0.12),
+          toX,
+          toY,
+        );
+        ctx.strokeStyle = `rgba(174, 210, 205, ${alpha})`;
+        ctx.lineWidth = widthValue;
+        ctx.stroke();
+      };
+
+      const draw = (now) => {
+        const elapsed = reduceMotion ? 0 : (now - start) * 0.00042;
+        pointer.x += (pointer.targetX - pointer.x) * 0.08;
+        pointer.y += (pointer.targetY - pointer.y) * 0.08;
+        signalStrength *= reduceMotion ? 1 : 0.985;
+        ctx.clearRect(0, 0, width, height);
+
+        const gradient = ctx.createRadialGradient(width * 0.74, height * 0.45, 0, width * 0.74, height * 0.45, Math.max(width, height) * 0.62);
+        gradient.addColorStop(0, "rgba(86, 113, 118, 0.12)");
+        gradient.addColorStop(0.45, "rgba(25, 32, 35, 0.04)");
+        gradient.addColorStop(1, "rgba(5, 7, 8, 0)");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+
+        nodes.forEach((node) => {
+          if (!reduceMotion) { node.x += node.vx; node.y += node.vy; }
+          if (node.x < -10) node.x = width + 10;
+          if (node.x > width + 10) node.x = -10;
+          if (node.y < -10) node.y = height + 10;
+          if (node.y > height + 10) node.y = -10;
+
+          const mouseDistance = Math.hypot(node.x - pointer.x, node.y - pointer.y);
+          if (pointer.active && mouseDistance < 180) {
+            ctx.beginPath();
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(pointer.x, pointer.y);
+            ctx.strokeStyle = `rgba(166, 203, 201, ${0.16 * (1 - mouseDistance / 180)})`;
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+          }
+
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(187, 207, 205, ${node.alpha})`;
+          ctx.fill();
+        });
+
+        const networkDistance = width < 760 ? 86 : 112;
+        for (let i = 0; i < nodes.length; i += 1) {
+          for (let j = i + 1; j < nodes.length; j += 1) {
+            const a = nodes[i];
+            const b = nodes[j];
+            const distance = Math.hypot(a.x - b.x, a.y - b.y);
+            if (distance > networkDistance) continue;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(137, 159, 158, ${0.035 * (1 - distance / networkDistance)})`;
+            ctx.lineWidth = 0.55;
+            ctx.stroke();
+          }
+        }
+
+        const helixCenterX = width < 760 ? width * 0.68 : width * 0.76;
+        const helixTop = height * 0.12;
+        const helixHeight = height * 0.74;
+        const radius = Math.min(width < 760 ? 58 : 118, width * 0.1);
+        const segments = width < 760 ? 58 : 84;
+        const strandA = [];
+        const strandB = [];
+
+        for (let i = 0; i <= segments; i += 1) {
+          const progress = i / segments;
+          const y = helixTop + progress * helixHeight;
+          const angle = progress * Math.PI * 5.4 + elapsed;
+          const perspective = 0.76 + Math.sin(progress * Math.PI) * 0.24;
+          const wave = Math.sin(angle) * radius * perspective;
+          const depth = (Math.cos(angle) + 1) / 2;
+          strandA.push({ x: helixCenterX + wave, y, depth });
+          strandB.push({ x: helixCenterX - wave, y, depth: 1 - depth });
+        }
+
+        const drawStrand = (strand) => {
+          for (let i = 1; i < strand.length; i += 1) {
+            const previous = strand[i - 1];
+            const current = strand[i];
+            ctx.beginPath();
+            ctx.moveTo(previous.x, previous.y);
+            ctx.lineTo(current.x, current.y);
+            ctx.strokeStyle = `rgba(188, 211, 207, ${0.13 + current.depth * 0.34})`;
+            ctx.lineWidth = 0.65 + current.depth * 0.9;
+            ctx.stroke();
+          }
+        };
+
+        drawStrand(strandA);
+        drawStrand(strandB);
+
+        for (let i = 3; i < strandA.length; i += 5) {
+          const a = strandA[i];
+          const b = strandB[i];
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = "rgba(143, 171, 168, 0.11)";
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+
+        const anchorPositions = [0.18, 0.39, 0.61, 0.82];
+        const anchors = anchorPositions.map((position) => strandA[Math.round(position * (strandA.length - 1))]);
+
+        anchors.forEach((point, anchorIndex) => {
+          const pulse = reduceMotion ? 1 : 1 + Math.sin(now * 0.0018 + anchorIndex) * 0.22;
+          const isActive = anchorIndex === activeSystem;
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, 3.2 * pulse, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(199, 222, 217, 0.86)";
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, (isActive ? 14 : 9) * pulse, 0, Math.PI * 2);
+          ctx.strokeStyle = isActive ? "rgba(185, 215, 210, 0.32)" : "rgba(155, 191, 186, 0.13)";
+          ctx.lineWidth = isActive ? 1 : 0.8;
+          ctx.stroke();
+
+          if (pointer.active) {
+            const distance = Math.hypot(pointer.x - point.x, pointer.y - point.y);
+            if (distance < 240) drawCurve(pointer.x, pointer.y, point.x, point.y, 0.3 * (1 - distance / 240));
+          }
+        });
+
+        const activeAnchor = anchors[activeSystem];
+        const activeButtonRect = buttons[activeSystem].getBoundingClientRect();
+        const endpointX = activeButtonRect.left + 4;
+        const endpointY = activeButtonRect.top + activeButtonRect.height / 2;
+        const signalAlpha = Math.max(0.08, signalStrength * 0.48);
+        drawCurve(activeAnchor.x, activeAnchor.y, endpointX, endpointY, signalAlpha, 0.9);
+
+        if (signalStrength > 0.08) {
+          const midpointX = (activeAnchor.x + endpointX) / 2;
+          const midpointY = (activeAnchor.y + endpointY) / 2;
+          const nearby = nodes
+            .map((node) => ({ node, distance: Math.hypot(node.x - midpointX, node.y - midpointY) }))
+            .sort((a, b) => a.distance - b.distance)
+            .slice(0, 3);
+          nearby.forEach(({ node }, branchIndex) => {
+            drawCurve(midpointX, midpointY, node.x, node.y, signalStrength * (0.14 - branchIndex * 0.025), 0.55);
+          });
+        }
+
+        frameId = requestAnimationFrame(draw);
+      };
+
+      resize();
+      window.addEventListener("resize", resize);
+      window.addEventListener("pointermove", onPointerMove, { passive: true });
+      document.documentElement.addEventListener("pointerleave", onPointerLeave);
+      frameId = requestAnimationFrame(draw);
+      window.addEventListener("beforeunload", () => cancelAnimationFrame(frameId), { once: true });
+    })();
+  </script>
 </body>
 </html>
