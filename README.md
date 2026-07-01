@@ -44,7 +44,7 @@ components/
 
 Requirements:
 
-- Node.js 20.9 or later
+- Node.js 22.x
 - npm
 
 ```bash
