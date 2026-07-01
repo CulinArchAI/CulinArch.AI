@@ -399,8 +399,8 @@ export default function HomePage() {
                 first public research layer. Partnership pathways will remain selective and
                 specific.
               </p>
-              <a className="button button-light" href="mailto:hello@culinarch.ai">
-                Start a conversation
+              <a className="button button-light" href="mailto:founder@culinarch.ai">
+                founder@culinarch.ai
               </a>
             </div>
           </div>
