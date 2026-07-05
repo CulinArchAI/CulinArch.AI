@@ -1,1 +1,529 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><meta name='theme-color' content='#111210'><title>CulinArch.AI — Taste Architecture Field</title><meta name='description' content='CulinArch.AI transforms fragmented culinary knowledge into structured intelligence.'><style>:root{color-scheme:dark;--bg:#111210;--bg2:#151713;--panel:#1b1d19;--panel2:#171915;--text:#eeeae2;--muted:#918d83;--faint:#57544d;--line:rgba(226,220,203,.115);--line2:rgba(159,191,186,.22);--accent:#9fbfba;--warm:#a99d88;--pad:clamp(24px,5vw,78px)}*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden;background:radial-gradient(circle at 66% 22%,rgba(132,123,98,.13),transparent 36%),radial-gradient(circle at 10% 40%,rgba(159,191,186,.055),transparent 30%),linear-gradient(135deg,#0e0f0e 0%,#151713 52%,#0d0e0d 100%)}a,button{font:inherit;color:inherit}.grain{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.36;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:76px 76px;mask-image:radial-gradient(circle at 55% 38%,#000 0%,transparent 80%)}.shell{position:relative;z-index:2}.header{position:fixed;z-index:10;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;padding:28px var(--pad);background:linear-gradient(rgba(17,18,16,.9),rgba(17,18,16,0));backdrop-filter:blur(2px)}.brand{font-family:Georgia,serif;font-size:18px;text-decoration:none;letter-spacing:-.045em}.brand span{color:var(--accent)}.nav{display:flex;gap:34px}.nav a{text-decoration:none;color:rgba(238,234,226,.58);font:10px ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase;transition:.2s}.nav a:hover{color:var(--text)}.top-cta{padding:13px 18px;border:1px solid var(--line);text-decoration:none;font:10px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:#ded8c9;background:rgba(18,20,17,.45)}.hero{min-height:100svh;padding:126px var(--pad) 82px;display:grid;align-items:center}.hero-inner{width:min(1500px,100%);margin:auto;display:grid;grid-template-columns:minmax(390px,.62fr) minmax(420px,1fr);gap:clamp(42px,7vw,120px);align-items:center}.eyebrow{margin:0 0 22px;color:var(--warm);font:10px ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase}.hero h1{margin:0 0 26px;font-family:Georgia,serif;font-size:clamp(58px,7.8vw,124px);font-weight:400;line-height:.9;letter-spacing:-.058em}.hero h1 .dim{color:rgba(238,234,226,.46)}.hero h1 em{font-style:italic;color:rgba(198,188,170,.72)}.lead{max-width:560px;margin:0 0 38px;color:var(--muted);font-size:14px;line-height:1.7}.actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.primary{display:inline-flex;align-items:center;gap:18px;padding:15px 20px;background:#e6dfd0;color:#111210;text-decoration:none;font-size:12px;font-weight:650}.primary:after{content:'→';font-size:14px}.ghost{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#aaa49a;font-size:12px}.play{width:34px;height:34px;border:1px solid rgba(238,234,226,.25);border-radius:50%;display:grid;place-items:center}.play:before{content:'';width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--accent);margin-left:2px}.visual{position:relative;height:min(64svh,620px);min-height:420px;border-radius:2px;overflow:hidden;background:radial-gradient(circle at var(--mx,52%) var(--my,46%),rgba(169,157,136,.12),transparent 16%),radial-gradient(circle at 50% 50%,rgba(255,255,255,.018),transparent 46%)}.visual:before{content:'move through the field';position:absolute;right:28px;bottom:24px;color:rgba(238,234,226,.18);font:10px ui-monospace,monospace;letter-spacing:.17em;text-transform:uppercase;transition:.35s}.visual.active:before{opacity:0}.visual:after{content:'';position:absolute;inset:8%;border:1px solid rgba(226,220,203,.035);opacity:.5;mask-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),#000,transparent 28%)}#tastefield{position:absolute;inset:0;width:100%;height:100%}.hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:rgba(238,234,226,.18);font:10px ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;pointer-events:none;transition:.35s}.visual.active .hint{opacity:0}.section{padding:82px var(--pad);border-top:1px solid var(--line)}.inner{width:min(1500px,100%);margin:auto}.arch{display:grid;grid-template-columns:.28fr 1fr;gap:clamp(34px,5vw,82px);align-items:start}.side p{margin:0;color:var(--muted);font-size:14px;line-height:1.68}.side a{display:inline-flex;margin-top:38px;color:#b8b0a2;text-decoration:none;font:11px ui-monospace,monospace;letter-spacing:.11em;text-transform:uppercase}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{min-height:232px;padding:28px 24px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(27,29,25,.86),rgba(17,18,16,.62));position:relative;transition:.25s}.card:hover{transform:translateY(-3px);border-color:rgba(159,191,186,.28);background:linear-gradient(145deg,rgba(32,35,30,.95),rgba(17,18,16,.7))}.glyph{width:42px;height:42px;margin-bottom:34px;border:1px solid rgba(159,191,186,.22);border-radius:50%;box-shadow:0 0 28px rgba(159,191,186,.08) inset,0 0 24px rgba(159,191,186,.07)}.card:nth-child(2) .glyph{border-radius:2px;background:radial-gradient(circle,#9fbfba 1px,transparent 2px);background-size:9px 9px}.card:nth-child(3) .glyph{border-radius:2px;box-shadow:inset 10px 0 0 rgba(159,191,186,.08),inset 20px 0 0 rgba(159,191,186,.05)}.card:nth-child(4) .glyph{box-shadow:0 0 0 7px rgba(159,191,186,.04),0 0 0 15px rgba(159,191,186,.025)}.card h3{margin:0 0 13px;font-family:Georgia,serif;font-size:22px;font-weight:400}.card p{margin:0;color:var(--muted);font-size:12px;line-height:1.62}.card:after{content:'→';position:absolute;right:24px;bottom:22px;color:#b9b1a2}.intel{display:grid;grid-template-columns:.65fr .7fr .35fr;gap:clamp(28px,5vw,76px);align-items:end}.intel h2{margin:0;font-family:Georgia,serif;font-size:clamp(30px,3.2vw,48px);font-weight:400;line-height:1.05;letter-spacing:-.04em}.intel p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}.mini{border:1px solid var(--line);background:rgba(21,23,19,.55)}.mini div{padding:13px 16px;border-bottom:1px solid rgba(226,220,203,.07);color:#aaa49a;font-size:12px}.mini div:last-child{border:0}.manifesto{padding-bottom:120px}.manifesto h2{max-width:840px;margin:0;font-family:Georgia,serif;font-size:clamp(42px,5vw,82px);font-weight:400;line-height:.98;letter-spacing:-.055em}.manifesto h2 span{color:var(--accent)}@media(max-width:980px){.hero-inner,.arch,.intel{grid-template-columns:1fr}.visual{height:52svh}.cards{grid-template-columns:1fr 1fr}.nav{display:none}}@media(max-width:620px){.hero{padding-top:108px}.cards{grid-template-columns:1fr}.hero h1{font-size:clamp(52px,16vw,86px)}.visual{min-height:330px}.top-cta{display:none}}</style></head><body><div class='grain'></div><header class='header'><a class='brand' href='#'>CulinArch<span>.</span>AI</a><nav class='nav'><a href='#architecture'>Architecture</a><a href='#modules'>System Map</a><a href='#intelligence'>Intelligence</a><a href='#manifesto'>Manifesto</a></nav><a class='top-cta' href='#modules'>Explore the Architecture</a></header><main class='shell'><section class='hero'><div class='hero-inner'><div><p class='eyebrow'>Culinary Intelligence Architecture</p><h1>A system.<br>A structure.<br><span class='dim'>A new language<br><em>of taste.</em></span></h1><p class='lead'>CulinArch.AI transforms fragmented culinary knowledge into structured intelligence — connecting technique, history, operations, sensory context, and decision logic.</p><div class='actions'><a class='primary' href='#modules'>Explore the Architecture</a><a class='ghost' href='#manifesto'><span class='play'></span><span>Read the Manifesto</span></a></div></div><div class='visual' id='visual'><canvas id='tastefield'></canvas><div class='hint'>hover to reveal the taste architecture field</div></div></div></section><section class='section' id='architecture'><div class='inner arch'><div class='side'><p class='eyebrow'>The Architecture</p><p>A layered system where data, knowledge, history, perception, and operation converge to inform better culinary decisions across every layer of creation and execution.</p><a href='#modules'>Discover the framework</a></div><div class='cards' id='modules'><article class='card'><div class='glyph'></div><h3>ArcOS</h3><p>The foundational operating layer. Standards, structure, workflow, procurement logic, SOPs, and execution control for culinary systems.</p></article><article class='card'><div class='glyph'></div><h3>Culinary Intelligence</h3><p>Knowledge graphs, reasoning models, classification, relationships, and decision logic that learn from structured culinary data.</p></article><article class='card'><div class='glyph'></div><h3>Culinary Archaeology</h3><p>Preserving and structuring the past to understand origins, migration, technique lineage, and culinary evolution.</p></article><article class='card'><div class='glyph'></div><h3>ArchSense</h3><p>Sensory understanding at scale. Context, preference, memory, perception, aroma, texture, and human intent.</p></article></div></div></section><section class='section' id='intelligence'><div class='inner intel'><div><p class='eyebrow'>Intelligence Layer</p><h2>From information to intelligence.<br>From insight to action.</h2></div><p>CulinArch.AI unifies diverse data and human expertise into a coherent system — continuously learning, reasoning, and evolving to support creativity, consistency, and impact.</p><div class='mini'><div>Knowledge Graphs</div><div>Decision Logic</div><div>Contextual Reasoning</div></div></div></section><section class='section manifesto' id='manifesto'><div class='inner'><p class='eyebrow'>Manifesto</p><h2>Not a recipe platform. <span>A new culinary language.</span></h2></div></section></main><script>(()=>{const wrap=document.getElementById('visual'),c=document.getElementById('tastefield'),ctx=c.getContext('2d');let w=0,h=0,dpr=1,mouse={x:0,y:0,tx:0,ty:0,active:false,alpha:0},nodes=[],labels=[];const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;function rnd(a,b){return a+Math.random()*(b-a)}function resize(){const r=wrap.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,2);c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);seed()}function seed(){nodes=[];const clusters=[{x:.42,y:.42,n:36,spread:.19},{x:.61,y:.36,n:30,spread:.16},{x:.58,y:.62,n:32,spread:.18},{x:.78,y:.55,n:24,spread:.13}];clusters.forEach(cl=>{for(let i=0;i<cl.n;i++){nodes.push({x:(cl.x+rnd(-cl.spread,cl.spread))*w,y:(cl.y+rnd(-cl.spread,cl.spread))*h,vx:rnd(-.08,.08),vy:rnd(-.08,.08),r:rnd(.7,1.9),tone:Math.random()>.72?'warm':'cool',pulse:rnd(0,6.28)})}});for(let i=0;i<46;i++)nodes.push({x:rnd(.18,.94)*w,y:rnd(.18,.78)*h,vx:rnd(-.05,.05),vy:rnd(-.05,.05),r:rnd(.45,1.2),tone:'dim',pulse:rnd(0,6.28)});labels=[['AROMA',.43,.31],['TEXTURE',.61,.26],['TECHNIQUE',.79,.42],['PAIRING',.84,.54],['CONTEXT',.55,.46],['MEMORY',.58,.58],['RELATIONSHIPS',.46,.72],['PROCUREMENT',.76,.70],['ORIGIN',.31,.49],['SEASONALITY',.67,.38],['PREFERENCE',.39,.61]]}function maskAlpha(x,y){const dx=x-mouse.x,dy=y-mouse.y,dist=Math.hypot(dx,dy);const radius=Math.min(230,Math.max(150,w*.23));const soft=Math.max(0,1-dist/radius);return Math.pow(soft,1.75)*mouse.alpha}function draw(t){ctx.clearRect(0,0,w,h);mouse.x+=(mouse.tx-mouse.x)*.13;mouse.y+=(mouse.ty-mouse.y)*.13;mouse.alpha+=(mouse.active?1:0-mouse.alpha)*.08;wrap.style.setProperty('--mx',(mouse.x/w*100).toFixed(2)+'%');wrap.style.setProperty('--my',(mouse.y/h*100).toFixed(2)+'%');ctx.fillStyle='rgba(226,220,203,.015)';for(let i=0;i<110;i++){const x=(i*97%1000)/1000*w,y=(i*191%1000)/1000*h;ctx.fillRect(x,y,1,1)}if(!reduce){nodes.forEach(n=>{n.x+=n.vx;n.y+=n.vy;n.pulse+=.015;if(n.x<-30)n.x=w+30;if(n.x>w+30)n.x=-30;if(n.y<-30)n.y=h+30;if(n.y>h+30)n.y=-30})}const maxD=Math.min(142,w*.18);for(let i=0;i<nodes.length;i++){for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j],dist=Math.hypot(a.x-b.x,a.y-b.y);if(dist<maxD){const m=(maskAlpha(a.x,a.y)+maskAlpha(b.x,b.y))*.5;if(m>.012){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(170,190,181,${m*.25*(1-dist/maxD)})`;ctx.lineWidth=.55;ctx.stroke()}}}}nodes.forEach(n=>{const m=maskAlpha(n.x,n.y);if(m>.01){const glow=(Math.sin(n.pulse)+1)*.5,base=n.tone==='warm'?'214,198,148':n.tone==='cool'?'159,191,186':'222,220,207';ctx.beginPath();ctx.arc(n.x,n.y,n.r*(1+glow*.38),0,Math.PI*2);ctx.fillStyle=`rgba(${base},${m*(.28+glow*.38)})`;ctx.fill();if(m>.35){ctx.beginPath();ctx.arc(n.x,n.y,n.r*5,0,Math.PI*2);ctx.fillStyle=`rgba(${base},${m*.045})`;ctx.fill()}}});labels.forEach(l=>{const x=l[1]*w,y=l[2]*h,m=maskAlpha(x,y);if(m>.12){ctx.font='10px ui-monospace, monospace';ctx.letterSpacing='2px';ctx.fillStyle=`rgba(238,234,226,${Math.min(.78,m)})`;ctx.fillText(l[0],x+10,y+4);ctx.beginPath();ctx.arc(x,y,3.2,0,Math.PI*2);ctx.fillStyle=`rgba(238,234,226,${m*.9})`;ctx.fill()}});if(mouse.alpha>.05){const g=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,Math.min(260,w*.28));g.addColorStop(0,`rgba(169,157,136,${.105*mouse.alpha})`);g.addColorStop(.48,`rgba(159,191,186,${.045*mouse.alpha})`);g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h)}requestAnimationFrame(draw)}wrap.addEventListener('pointerenter',e=>{wrap.classList.add('active');mouse.active=true;const r=wrap.getBoundingClientRect();mouse.tx=e.clientX-r.left;mouse.ty=e.clientY-r.top;mouse.x=mouse.tx;mouse.y=mouse.ty});wrap.addEventListener('pointermove',e=>{const r=wrap.getBoundingClientRect();mouse.tx=e.clientX-r.left;mouse.ty=e.clientY-r.top});wrap.addEventListener('pointerleave',()=>{wrap.classList.remove('active');mouse.active=false});wrap.addEventListener('touchstart',e=>{if(e.touches[0]){const r=wrap.getBoundingClientRect();mouse.tx=e.touches[0].clientX-r.left;mouse.ty=e.touches[0].clientY-r.top;mouse.x=mouse.tx;mouse.y=mouse.ty;mouse.active=true;wrap.classList.add('active')}},{passive:true});wrap.addEventListener('touchmove',e=>{if(e.touches[0]){const r=wrap.getBoundingClientRect();mouse.tx=e.touches[0].clientX-r.left;mouse.ty=e.touches[0].clientY-r.top}},{passive:true});wrap.addEventListener('touchend',()=>{mouse.active=false;wrap.classList.remove('active')});addEventListener('resize',resize,{passive:true});resize();requestAnimationFrame(draw)})();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#111210" />
+  <title>CulinArch.AI — Taste Architecture Field</title>
+  <meta name="description" content="CulinArch.AI transforms fragmented culinary knowledge into structured intelligence." />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111210;
+      --bg2: #151713;
+      --panel: #1b1d19;
+      --text: #eeeae2;
+      --muted: #918d83;
+      --line: rgba(226, 220, 203, .115);
+      --accent: #9fbfba;
+      --warm: #a99d88;
+      --pad: clamp(28px, 4.8vw, 112px);
+      --wide: min(3020px, calc(100vw - (var(--pad) * 2)));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 68% 20%, rgba(132, 123, 98, .13), transparent 34%),
+        radial-gradient(circle at 10% 42%, rgba(159, 191, 186, .055), transparent 28%),
+        linear-gradient(135deg, #0e0f0e 0%, #151713 52%, #0d0e0d 100%);
+    }
+    a, button { font: inherit; color: inherit; }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .32;
+      background-image:
+        linear-gradient(rgba(255,255,255,.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
+      background-size: 84px 84px;
+      mask-image: radial-gradient(circle at 56% 38%, #000 0%, transparent 84%);
+    }
+
+    .shell { position: relative; z-index: 2; }
+
+    .header {
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      right: 0;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px var(--pad);
+      background: linear-gradient(rgba(17,18,16,.9), rgba(17,18,16,0));
+      backdrop-filter: blur(2px);
+    }
+    .brand {
+      font-family: Georgia, serif;
+      font-size: clamp(17px, .78vw, 23px);
+      text-decoration: none;
+      letter-spacing: -.045em;
+    }
+    .brand span { color: var(--accent); }
+    .nav { display: flex; gap: clamp(24px, 1.7vw, 52px); }
+    .nav a {
+      text-decoration: none;
+      color: rgba(238,234,226,.58);
+      font: clamp(9px, .45vw, 12px) ui-monospace, monospace;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      transition: .2s;
+    }
+    .nav a:hover { color: var(--text); }
+    .top-cta {
+      padding: 13px 18px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      font: clamp(9px, .45vw, 12px) ui-monospace, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #ded8c9;
+      background: rgba(18,20,17,.45);
+    }
+
+    .hero {
+      min-height: 100svh;
+      padding: clamp(118px, 8vh, 150px) var(--pad) 78px;
+      display: grid;
+      align-items: center;
+    }
+    .hero-inner {
+      width: var(--wide);
+      margin: auto;
+      display: grid;
+      grid-template-columns: minmax(390px, .34fr) minmax(620px, 1fr);
+      gap: clamp(54px, 5vw, 170px);
+      align-items: center;
+    }
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--warm);
+      font: clamp(9px, .48vw, 12px) ui-monospace, monospace;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      margin: 0 0 28px;
+      font-family: Georgia, serif;
+      font-size: clamp(56px, 5vw, 108px);
+      font-weight: 400;
+      line-height: .92;
+      letter-spacing: -.055em;
+    }
+    .hero h1 .dim { color: rgba(238,234,226,.46); }
+    .hero h1 em { font-style: italic; color: rgba(198,188,170,.72); }
+    .lead {
+      max-width: 680px;
+      margin: 0 0 40px;
+      color: var(--muted);
+      font-size: clamp(14px, .72vw, 18px);
+      line-height: 1.75;
+    }
+    .actions { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+    .primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 22px;
+      background: #e6dfd0;
+      color: #111210;
+      text-decoration: none;
+      font-size: clamp(12px, .62vw, 15px);
+      font-weight: 650;
+    }
+    .primary::after { content: '→'; font-size: 15px; }
+    .ghost { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #aaa49a; font-size: clamp(12px, .58vw, 14px); }
+    .play { width: 36px; height: 36px; border: 1px solid rgba(238,234,226,.25); border-radius: 50%; display: grid; place-items: center; }
+    .play::before { content: ''; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid var(--accent); margin-left: 2px; }
+
+    .visual {
+      position: relative;
+      height: min(70svh, 760px);
+      min-height: 520px;
+      border-radius: 2px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at var(--mx, 52%) var(--my, 46%), rgba(169,157,136,.12), transparent 16%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.018), transparent 46%);
+    }
+    .visual::before {
+      content: 'move through the field';
+      position: absolute;
+      right: 28px;
+      bottom: 24px;
+      color: rgba(238,234,226,.22);
+      font: clamp(9px, .44vw, 12px) ui-monospace, monospace;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+      transition: .35s;
+    }
+    .visual.active::before { opacity: 0; }
+    .visual::after {
+      content: '';
+      position: absolute;
+      inset: 6%;
+      border: 1px solid rgba(226,220,203,.045);
+      opacity: .58;
+      mask-image: radial-gradient(circle at var(--mx,50%) var(--my,50%), #000, transparent 28%);
+      pointer-events: none;
+    }
+    #tastefield { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hint {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(238,234,226,.22);
+      font: clamp(9px, .46vw, 13px) ui-monospace, monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      pointer-events: none;
+      transition: .35s;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .visual.active .hint { opacity: 0; }
+
+    .section { padding: 88px var(--pad); border-top: 1px solid var(--line); }
+    .inner { width: var(--wide); margin: auto; }
+    .arch { display: grid; grid-template-columns: minmax(260px, .24fr) 1fr; gap: clamp(36px, 4.5vw, 100px); align-items: start; }
+    .side p { margin: 0; color: var(--muted); font-size: clamp(14px, .68vw, 18px); line-height: 1.7; }
+    .side a { display: inline-flex; margin-top: 38px; color: #b8b0a2; text-decoration: none; font: clamp(10px, .48vw, 13px) ui-monospace, monospace; letter-spacing: .11em; text-transform: uppercase; }
+    .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, .9vw, 24px); }
+    .card {
+      min-height: clamp(232px, 15vw, 330px);
+      padding: clamp(26px, 1.4vw, 42px) clamp(22px, 1.35vw, 40px);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(27,29,25,.86), rgba(17,18,16,.62));
+      position: relative;
+      transition: .25s;
+    }
+    .card:hover { transform: translateY(-3px); border-color: rgba(159,191,186,.28); background: linear-gradient(145deg, rgba(32,35,30,.95), rgba(17,18,16,.7)); }
+    .glyph { width: clamp(42px, 2.2vw, 66px); height: clamp(42px, 2.2vw, 66px); margin-bottom: clamp(30px, 2vw, 54px); border: 1px solid rgba(159,191,186,.22); border-radius: 50%; box-shadow: 0 0 28px rgba(159,191,186,.08) inset, 0 0 24px rgba(159,191,186,.07); }
+    .card:nth-child(2) .glyph { border-radius: 2px; background: radial-gradient(circle, #9fbfba 1px, transparent 2px); background-size: 9px 9px; }
+    .card:nth-child(3) .glyph { border-radius: 2px; box-shadow: inset 10px 0 0 rgba(159,191,186,.08), inset 20px 0 0 rgba(159,191,186,.05); }
+    .card:nth-child(4) .glyph { box-shadow: 0 0 0 7px rgba(159,191,186,.04), 0 0 0 15px rgba(159,191,186,.025); }
+    .card h3 { margin: 0 0 14px; font-family: Georgia, serif; font-size: clamp(22px, 1.35vw, 34px); font-weight: 400; }
+    .card p { margin: 0; color: var(--muted); font-size: clamp(12px, .62vw, 16px); line-height: 1.66; }
+    .card::after { content: '→'; position: absolute; right: 24px; bottom: 22px; color: #b9b1a2; }
+
+    .intel { display: grid; grid-template-columns: .65fr .7fr .35fr; gap: clamp(28px, 5vw, 90px); align-items: end; }
+    .intel h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(30px, 3vw, 64px); font-weight: 400; line-height: 1.05; letter-spacing: -.04em; }
+    .intel p { margin: 0; color: var(--muted); font-size: clamp(14px, .68vw, 18px); line-height: 1.72; }
+    .mini { border: 1px solid var(--line); background: rgba(21,23,19,.55); }
+    .mini div { padding: 14px 16px; border-bottom: 1px solid rgba(226,220,203,.07); color: #aaa49a; font-size: clamp(12px, .56vw, 15px); }
+    .mini div:last-child { border: 0; }
+    .manifesto { padding-bottom: 120px; }
+    .manifesto h2 { max-width: 1120px; margin: 0; font-family: Georgia, serif; font-size: clamp(42px, 4.4vw, 104px); font-weight: 400; line-height: .98; letter-spacing: -.055em; }
+    .manifesto h2 span { color: var(--accent); }
+
+    @media (min-width: 2100px) {
+      .hero { padding-top: clamp(130px, 9vh, 180px); }
+      .hero-inner { grid-template-columns: minmax(520px, .32fr) minmax(1120px, 1fr); gap: clamp(86px, 5.2vw, 190px); }
+      .hero h1 { font-size: clamp(76px, 3.55vw, 112px); }
+      .visual { min-height: 620px; height: min(72svh, 860px); }
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner, .arch, .intel { grid-template-columns: 1fr; }
+      .visual { height: 52svh; min-height: 430px; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .nav { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      :root { --pad: 24px; }
+      .hero { padding-top: 108px; }
+      .cards { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(50px, 15vw, 82px); }
+      .visual { min-height: 330px; }
+      .top-cta { display: none; }
+      .hint { white-space: normal; width: 80%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="header">
+    <a class="brand" href="#">CulinArch<span>.</span>AI</a>
+    <nav class="nav">
+      <a href="#architecture">Architecture</a>
+      <a href="#modules">System Map</a>
+      <a href="#intelligence">Intelligence</a>
+      <a href="#manifesto">Manifesto</a>
+    </nav>
+    <a class="top-cta" href="#modules">Explore the Architecture</a>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Culinary Intelligence Architecture</p>
+          <h1>A system.<br>A structure.<br><span class="dim">A new language<br><em>of taste.</em></span></h1>
+          <p class="lead">CulinArch.AI transforms fragmented culinary knowledge into structured intelligence — connecting technique, history, operations, sensory context, and decision logic.</p>
+          <div class="actions">
+            <a class="primary" href="#modules">Explore the Architecture</a>
+            <a class="ghost" href="#manifesto"><span class="play"></span><span>Read the Manifesto</span></a>
+          </div>
+        </div>
+        <div class="visual" id="visual">
+          <canvas id="tastefield"></canvas>
+          <div class="hint">hover to reveal the taste architecture field</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="inner arch">
+        <div class="side">
+          <p class="eyebrow">The Architecture</p>
+          <p>A layered system where data, knowledge, history, perception, and operation converge to inform better culinary decisions across every layer of creation and execution.</p>
+          <a href="#modules">Discover the framework</a>
+        </div>
+        <div class="cards" id="modules">
+          <article class="card"><div class="glyph"></div><h3>ArcOS</h3><p>The foundational operating layer. Standards, structure, workflow, procurement logic, SOPs, and execution control for culinary systems.</p></article>
+          <article class="card"><div class="glyph"></div><h3>Culinary Intelligence</h3><p>Knowledge graphs, reasoning models, classification, relationships, and decision logic that learn from structured culinary data.</p></article>
+          <article class="card"><div class="glyph"></div><h3>Culinary Archaeology</h3><p>Preserving and structuring the past to understand origins, migration, technique lineage, and culinary evolution.</p></article>
+          <article class="card"><div class="glyph"></div><h3>ArchSense</h3><p>Sensory understanding at scale. Context, preference, memory, perception, aroma, texture, and human intent.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="intelligence">
+      <div class="inner intel">
+        <div>
+          <p class="eyebrow">Intelligence Layer</p>
+          <h2>From information to intelligence.<br>From insight to action.</h2>
+        </div>
+        <p>CulinArch.AI unifies diverse data and human expertise into a coherent system — continuously learning, reasoning, and evolving to support creativity, consistency, and impact.</p>
+        <div class="mini"><div>Knowledge Graphs</div><div>Decision Logic</div><div>Contextual Reasoning</div></div>
+      </div>
+    </section>
+
+    <section class="section manifesto" id="manifesto">
+      <div class="inner">
+        <p class="eyebrow">Manifesto</p>
+        <h2>Not a recipe platform. <span>A new culinary language.</span></h2>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const wrap = document.getElementById('visual');
+      const c = document.getElementById('tastefield');
+      const ctx = c.getContext('2d');
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let w = 0, h = 0, dpr = 1;
+      let nodes = [], labels = [];
+      const mouse = { x: 0, y: 0, tx: 0, ty: 0, active: false, alpha: 0 };
+
+      const rnd = (a, b) => a + Math.random() * (b - a);
+
+      function resize() {
+        const r = wrap.getBoundingClientRect();
+        w = r.width;
+        h = r.height;
+        dpr = Math.min(devicePixelRatio || 1, 2);
+        c.width = w * dpr;
+        c.height = h * dpr;
+        c.style.width = w + 'px';
+        c.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        seed();
+      }
+
+      function seed() {
+        nodes = [];
+        const clusters = [
+          { x: .38, y: .42, n: 46, spread: .19 },
+          { x: .58, y: .34, n: 42, spread: .17 },
+          { x: .58, y: .64, n: 44, spread: .18 },
+          { x: .78, y: .55, n: 34, spread: .14 },
+          { x: .30, y: .62, n: 28, spread: .12 }
+        ];
+
+        clusters.forEach(cl => {
+          for (let i = 0; i < cl.n; i++) {
+            nodes.push({
+              x: (cl.x + rnd(-cl.spread, cl.spread)) * w,
+              y: (cl.y + rnd(-cl.spread, cl.spread)) * h,
+              vx: rnd(-.08, .08),
+              vy: rnd(-.08, .08),
+              r: rnd(.7, 1.9),
+              tone: Math.random() > .72 ? 'warm' : 'cool',
+              pulse: rnd(0, Math.PI * 2)
+            });
+          }
+        });
+
+        for (let i = 0; i < 64; i++) {
+          nodes.push({ x: rnd(.12, .94) * w, y: rnd(.14, .82) * h, vx: rnd(-.05, .05), vy: rnd(-.05, .05), r: rnd(.45, 1.2), tone: 'dim', pulse: rnd(0, Math.PI * 2) });
+        }
+
+        labels = [
+          ['AROMA', .41, .30], ['TEXTURE', .60, .25], ['TECHNIQUE', .79, .42], ['PAIRING', .84, .54],
+          ['CONTEXT', .54, .46], ['MEMORY', .58, .58], ['RELATIONSHIPS', .43, .72], ['PROCUREMENT', .76, .70],
+          ['ORIGIN', .28, .49], ['SEASONALITY', .67, .38], ['PREFERENCE', .36, .61]
+        ];
+      }
+
+      function maskAlpha(x, y) {
+        const dx = x - mouse.x;
+        const dy = y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        const radius = Math.min(390, Math.max(220, w * .18));
+        const soft = Math.max(0, 1 - dist / radius);
+        return Math.pow(soft, 1.55) * mouse.alpha;
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+
+        mouse.x += (mouse.tx - mouse.x) * .13;
+        mouse.y += (mouse.ty - mouse.y) * .13;
+        mouse.alpha += ((mouse.active ? 1 : 0) - mouse.alpha) * .08;
+
+        wrap.style.setProperty('--mx', (mouse.x / w * 100).toFixed(2) + '%');
+        wrap.style.setProperty('--my', (mouse.y / h * 100).toFixed(2) + '%');
+
+        ctx.fillStyle = 'rgba(226,220,203,.014)';
+        for (let i = 0; i < 120; i++) {
+          const x = (i * 97 % 1000) / 1000 * w;
+          const y = (i * 191 % 1000) / 1000 * h;
+          ctx.fillRect(x, y, 1, 1);
+        }
+
+        if (!reduce) {
+          nodes.forEach(n => {
+            n.x += n.vx;
+            n.y += n.vy;
+            n.pulse += .015;
+            if (n.x < -30) n.x = w + 30;
+            if (n.x > w + 30) n.x = -30;
+            if (n.y < -30) n.y = h + 30;
+            if (n.y > h + 30) n.y = -30;
+          });
+        }
+
+        const maxD = Math.min(168, w * .12);
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i], b = nodes[j];
+            const dist = Math.hypot(a.x - b.x, a.y - b.y);
+            if (dist < maxD) {
+              const m = (maskAlpha(a.x, a.y) + maskAlpha(b.x, b.y)) * .5;
+              if (m > .012) {
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.strokeStyle = `rgba(170,190,181,${m * .25 * (1 - dist / maxD)})`;
+                ctx.lineWidth = .55;
+                ctx.stroke();
+              }
+            }
+          }
+        }
+
+        nodes.forEach(n => {
+          const m = maskAlpha(n.x, n.y);
+          if (m > .01) {
+            const glow = (Math.sin(n.pulse) + 1) * .5;
+            const base = n.tone === 'warm' ? '214,198,148' : n.tone === 'cool' ? '159,191,186' : '222,220,207';
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r * (1 + glow * .38), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${base},${m * (.28 + glow * .38)})`;
+            ctx.fill();
+            if (m > .35) {
+              ctx.beginPath();
+              ctx.arc(n.x, n.y, n.r * 5, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(${base},${m * .045})`;
+              ctx.fill();
+            }
+          }
+        });
+
+        labels.forEach(l => {
+          const x = l[1] * w;
+          const y = l[2] * h;
+          const m = maskAlpha(x, y);
+          if (m > .12) {
+            ctx.font = `${Math.max(10, Math.min(13, w * .006))}px ui-monospace, monospace`;
+            ctx.fillStyle = `rgba(238,234,226,${Math.min(.78, m)})`;
+            ctx.fillText(l[0], x + 11, y + 4);
+            ctx.beginPath();
+            ctx.arc(x, y, 3.2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(238,234,226,${m * .9})`;
+            ctx.fill();
+          }
+        });
+
+        if (mouse.alpha > .05) {
+          const radius = Math.min(430, Math.max(260, w * .20));
+          const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, radius);
+          g.addColorStop(0, `rgba(169,157,136,${.105 * mouse.alpha})`);
+          g.addColorStop(.48, `rgba(159,191,186,${.045 * mouse.alpha})`);
+          g.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, w, h);
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      wrap.addEventListener('pointerenter', e => {
+        wrap.classList.add('active');
+        mouse.active = true;
+        const r = wrap.getBoundingClientRect();
+        mouse.tx = e.clientX - r.left;
+        mouse.ty = e.clientY - r.top;
+        mouse.x = mouse.tx;
+        mouse.y = mouse.ty;
+      });
+      wrap.addEventListener('pointermove', e => {
+        const r = wrap.getBoundingClientRect();
+        mouse.tx = e.clientX - r.left;
+        mouse.ty = e.clientY - r.top;
+      });
+      wrap.addEventListener('pointerleave', () => {
+        wrap.classList.remove('active');
+        mouse.active = false;
+      });
+      wrap.addEventListener('touchstart', e => {
+        if (!e.touches[0]) return;
+        const r = wrap.getBoundingClientRect();
+        mouse.tx = e.touches[0].clientX - r.left;
+        mouse.ty = e.touches[0].clientY - r.top;
+        mouse.x = mouse.tx;
+        mouse.y = mouse.ty;
+        mouse.active = true;
+        wrap.classList.add('active');
+      }, { passive: true });
+      wrap.addEventListener('touchmove', e => {
+        if (!e.touches[0]) return;
+        const r = wrap.getBoundingClientRect();
+        mouse.tx = e.touches[0].clientX - r.left;
+        mouse.ty = e.touches[0].clientY - r.top;
+      }, { passive: true });
+      wrap.addEventListener('touchend', () => {
+        mouse.active = false;
+        wrap.classList.remove('active');
+      });
+
+      addEventListener('resize', resize, { passive: true });
+      resize();
+      requestAnimationFrame(draw);
+    })();
+  </script>
+</body>
+</html>
